@@ -8,11 +8,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import '@fortawesome/fontawesome-free/js/all.min.js'
 import App from './App.jsx'
 
-import Home from './components/Home.jsx'
-import About from './components/About.jsx'
-import Projects from './components/projects.jsx'
-import Services from './components/Services.jsx'
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
