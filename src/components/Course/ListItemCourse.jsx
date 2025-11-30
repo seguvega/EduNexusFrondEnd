@@ -1,10 +1,10 @@
-import { remove } from "../../datasource/api-inventory";
+import { remove } from "../../datasource/api-course";
 import { Link } from "react-router-dom";
 
-const ListItemInventory = ({ product, onRemoved }) => {
+const ListItemCourse = ({ course, onRemoved }) => {
 
     const handleRemove = (id) => {
-        if (window.confirm('Are you sure you want to delete this item?')) {
+        if (window.confirm('Are you sure you want to delete this course?')) {
             remove(id)
                 .then(data => {
                     if (data && data.success) {
@@ -20,24 +20,18 @@ const ListItemInventory = ({ product, onRemoved }) => {
 
     return (
         <tr >
-            <td className="text-center"> {product.item || ''} </td>
-            <td className="text-center"> {product.qty || ''} </td>
-            <td className="text-center"> {product.status || ''} </td>
-            <td>
-                Hight: {product.size.h || ''}<br />
-                Width: {product.size.w || ''}<br />
-                UOM: {product.size.uom || ''}<br />
-            </td>
-            <td className="text-center">{product.tags.toString() || ''}</td>
+            <td className="text-center"> {course.name || ''} </td>
+            <td className="text-center"> {course.status || ''} </td>
+            <td className="text-center">{course.tags.toString() || ''}</td>
             <td className="text-center">
-                <Link className="btn bg-primary btn-primary btn-sm" to={'/inventory/edit/' + product.id}>
+                <Link className="btn bg-primary btn-primary btn-sm" to={'/course/edit/' + course.id}>
                     <i className="fas fa-pencil-alt"></i>
                 </Link>
             </td>
             <td className="text-center">
                 <button
                     className="btn bg-danger btn-danger btn-sm"
-                    onClick={() => handleRemove(product.id)}>
+                    onClick={() => handleRemove(course.id)}>
                     <i className="fas fa-trash-alt"></i>
                 </button>
             </td>
@@ -46,4 +40,4 @@ const ListItemInventory = ({ product, onRemoved }) => {
 
 }
 
-export default ListItemInventory;
+export default ListItemCourse;

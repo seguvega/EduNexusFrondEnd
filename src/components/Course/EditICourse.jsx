@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import InventoryModel from "../../datasource/inventoryModel";
-import { update, read } from "../../datasource/api-inventory";
-import InventoryForm from "./InventoryForm";
+import CourseModel from "../../datasource/CourseModel";
+import { update, read } from "../../datasource/api-course";
+import CourseForm from "./CourseForm";
 
-const EditInventory = () => {
+const EditICourse = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [product, setProduct] = useState(new InventoryModel());
+    const [course, setcourse] = useState(new CourseModel());
     const [errorMsg, setErrorMsg] = useState('')
 
     // When the component loads.
     useEffect(() => {
         read(id).then(data => {
             if (data) {
-                setProduct(new InventoryModel(
+                setcourse(new CourseModel(
                     data.id,
-                    data.item,
-                    data.qty,
+                    data.name,
                     data.tags,
-                    data.status,
-                    data.size.h,
-                    data.size.w,
-                    data.size.uom
+                    data.status
                 ));
             } else {
                 setErrorMsg(data.message);
@@ -36,30 +32,24 @@ const EditInventory = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setProduct(formData => ({ ...formData, [name]: value }));
+        setcourse(formData => ({ ...formData, [name]: value }));
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Submitting product: ", product);
+        console.log("Submitting course: ", course);
 
-        const submitProduct = {
-            id: product.id,
-            item: product.item,
-            qty: product.qty,
-            tags: product.tags.toString(),
-            status: product.status,
-            size: {
-                h: product.size_h,
-                w: product.size_w,
-                uom: product.size_uom
-            }
+        const submitcourse = {
+            id: course.id,
+            name: course.name,
+            tags: course.tags.toString(),
+            status: course.status,
         };
 
-        update(submitProduct, id)
+        update(submitcourse, id)
             .then(data => {
                 if (data && data.success) {
                     alert(data.message);
-                    navigate("/inventory/list");
+                    navigate("/course/list");
                 } else {
                     setErrorMsg(data.message);
                 }
@@ -77,8 +67,8 @@ const EditInventory = () => {
                 <div className="offset-md-3 col-md-6">
                     <h1>Edit Inventory Item</h1>
                     <p className="flash"><span>{errorMsg}</span></p>
-                    <InventoryForm
-                        product={product}
+                    <CourseForm
+                        course={course}
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                     />
@@ -88,4 +78,4 @@ const EditInventory = () => {
     );
 }
 
-export default EditInventory;
+export default EditICourse;

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { list } from '../../datasource/api-inventory';
-import ListItemInventory from './ListItemInventory';
+import { list } from '../../datasource/api-course.js';
+import ListCourseCourse from './ListItemCourse.jsx';
 import { Link } from 'react-router-dom';
 
-const ListInventory = () => {
-    const [inventoryList, setInventoryList] = useState([]);
+const ListCourse = () => {
+    const [CourseList, setCourseList] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
 
     const loadInventory = () => {
         list().then((data) => {
             if (data) {
-                setInventoryList(data || []);
+                setCourseList(data || []);
 
                 setIsLoading(false);
             }
@@ -25,7 +25,7 @@ const ListInventory = () => {
         loadInventory();
     }, []);
 
-    // When a item is removed.
+    // When a Course is removed.
     const handleRemove = () => {
         loadInventory();
     }
@@ -33,9 +33,9 @@ const ListInventory = () => {
     return (
         <>
             <div>
-                <Link to="/inventory/add" className="btn btn-primary align-self-end" role="button">
+                <Link to="/course/add" className="btn btn-primary align-self-end" role="button">
                     <i className="fas fa-plus-circle"></i>
-                    Add a new Item
+                    Add a new Course
                 </Link>
             </div>
             <div className="table-responsive" >
@@ -45,18 +45,16 @@ const ListInventory = () => {
                         <thead>
                             {/* -- Header Row-- */}
                             <tr>
-                                <th className="text-center">Item</th>
-                                <th className="text-center">Qty</th>
+                                <th className="text-center">Course</th>
                                 <th className="text-center">Status</th>
-                                <th>Size</th>
                                 <th className="text-center">Tags</th>
                                 <th className="text-center" colSpan="3">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {/* -- Repeatable Template Row -- */}
-                            {inventoryList.map(product =>
-                                <ListItemInventory
+                            {CourseList.map(product =>
+                                <ListCourseCourse
                                     key={product.id}
                                     product={product}
                                     onRemoved={handleRemove}
@@ -69,4 +67,4 @@ const ListInventory = () => {
     )
 }
 
-export default ListInventory;
+export default ListCourse;

@@ -18,8 +18,8 @@ function Layout() {
                 <Link to="/">
                     <i className="fas fa-home"></i> Home
                 </Link>
-                <Link to="/inventory/list">
-                    <i className="fa-regular fa-rectangle-list"></i>Inventory List
+                <Link to="/course/list">
+                    <i className="fa-regular fa-rectangle-list"></i>Courses List
                 </Link>
                 {!isAuthenticated() &&
                     <Link to="/users/signin">
