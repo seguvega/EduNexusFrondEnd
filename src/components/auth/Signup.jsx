@@ -56,7 +56,7 @@ const Signup = () => {
     return (
         <div className="container" style={{ paddingTop: 10 }}>
             <div className="row">
-                <div className="offset-md-3 col-md-6">
+                <div className="offset-md-1 col-md-16">
                     <h1>Add a new user</h1>
                     <p className="flash"><span>{errorMsg}</span></p>
                     <form onSubmit={handleSubmit} className="form card p-3">

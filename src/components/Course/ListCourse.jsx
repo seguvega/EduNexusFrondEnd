@@ -53,10 +53,10 @@ const ListCourse = () => {
                         </thead>
                         <tbody>
                             {/* -- Repeatable Template Row -- */}
-                            {CourseList.map(product =>
+                            {CourseList.map(course =>
                                 <ListCourseCourse
-                                    key={product.id}
-                                    product={product}
+                                    key={course.id}
+                                    course={course}
                                     onRemoved={handleRemove}
                                 />
                             )}

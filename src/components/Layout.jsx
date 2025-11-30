@@ -12,7 +12,7 @@ function Layout() {
 
     return (
         <>
-            <h1>My Portfolio</h1>
+            <h1>Edu Nexus</h1>
             <nav className="navbar">
                 <img src={image_logo} alt="Logo" className='logo' />
                 <Link to="/">

@@ -7,14 +7,14 @@ import CourseForm from "./CourseForm";
 const EditICourse = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [course, setcourse] = useState(new CourseModel());
+    const [course, setCourse] = useState(new CourseModel());
     const [errorMsg, setErrorMsg] = useState('')
 
     // When the component loads.
     useEffect(() => {
         read(id).then(data => {
             if (data) {
-                setcourse(new CourseModel(
+                setCourse(new CourseModel(
                     data.id,
                     data.name,
                     data.tags,
@@ -32,7 +32,7 @@ const EditICourse = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setcourse(formData => ({ ...formData, [name]: value }));
+        setCourse(formData => ({ ...formData, [name]: value }));
     }
     const handleSubmit = (event) => {
         event.preventDefault();

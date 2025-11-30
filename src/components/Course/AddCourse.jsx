@@ -6,26 +6,26 @@ import CourseForm from "./CourseForm";
 
 const AddCourse = () => {
     const navigate = useNavigate();
-    const [product, setProduct] = useState(new CourseModel());
+    const [course, setCourse] = useState(new CourseModel());
     const [errorMsg, setErrorMsg] = useState('')
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setProduct(formData => ({ ...formData, [name]: value }));
+        setCourse(formData => ({ ...formData, [name]: value }));
     }
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Submitting course: ", product);
+        console.log("Submitting course: ", course);
 
-        const submitProduct = {
-            id: product.id,
-            name: product.name,
-            tags: product.tags.toString(),
-            status: product.status
+        const submitcourse = {
+            id: course.id,
+            name: course.name,
+            tags: course.tags.toString(),
+            status: course.status
         };
 
-        create(submitProduct)
+        create(submitcourse)
             .then(data => {
                 if (data && data.id) {
                     alert(`Item added with the id ${data.id}`);
@@ -48,7 +48,7 @@ const AddCourse = () => {
                     <h1>Add Course Item</h1>
                     <p className="flash"><span>{errorMsg}</span></p>
                     <CourseForm
-                        product={product}
+                        course={course}
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                     />
